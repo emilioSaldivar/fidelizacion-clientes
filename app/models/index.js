@@ -16,5 +16,5 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.Ventas = require("./venta.model.js")(sequelize, Sequelize);
-db.Conceptos = require("./concepto.model.js")(sequelize, Sequelize);
+db.Concepto = require("./concepto.model.js")(sequelize, Sequelize);
 module.exports = db;
