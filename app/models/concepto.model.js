@@ -10,7 +10,6 @@ module.exports = (sequelize, Sequelize) => {
         }
     }, {
         tableName: 'conceptos',  // Esto especifica que Sequelize debe usar la tabla 'conceptos'
-        timestamps: true,  // Sequelize manejará las columnas createdAt y updatedAt automáticamente
         createdAt: 'createdat',  // Configuramos el nombre de la columna en minúsculas
         updatedAt: 'updatedat'   // Lo mismo para updatedAt
     });
