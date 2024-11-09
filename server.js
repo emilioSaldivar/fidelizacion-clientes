@@ -25,6 +25,8 @@ app.get("/", (req, res) => {
 // Importar y registrar rutas de ventas
 require("./app/routes/venta.routes")(app);
 
+
+// Cuando la ruta no est√° definida enviar 404
 // Importar y registrar rutas
 const conceptoRoutes = require("./app/routes/concepto.routes");
 app.use("/api", conceptoRoutes);  // Registrar las rutas bajo el prefijo /api
@@ -33,6 +35,8 @@ app.use("/api", reglasAsignacionRoutes); // Agregar rutas de reglas de asignaci√
 // Importar y registrar rutas de vencimientos de puntos
 const vencimientoPuntosRoutes = require("./app/routes/vencimiento_puntos.routes");
 app.use("/api", vencimientoPuntosRoutes);
+const usoPuntosRoutes = require("./app/routes/uso_puntos.routes");
+usoPuntosRoutes(app);
 
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;

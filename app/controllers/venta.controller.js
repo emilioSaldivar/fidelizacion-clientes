@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
         const nuevaVenta = await Ventas.create(venta);
 
         // Obtener la regla de asignación de puntos según el monto de la venta
-        const reglaAsignacion = await ReglasAsignacion.findOne({
+        const reglaAsignacion = await ReglaAsignacion.findOne({
             where: {
                 limite_inferior: { [Op.lte]: venta.total },
                 limite_superior: { [Op.gte]: venta.total }
