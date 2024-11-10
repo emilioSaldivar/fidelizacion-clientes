@@ -2,6 +2,7 @@ const db = require("../models");
 const Ventas = db.Ventas;
 const BolsaPuntos = db.bolsa_puntos;
 const ReglaAsignacion = db.reglas_asignacion;
+const ReglaVencimiento = db.vencimiento_puntos;
 const Op = db.Sequelize.Op;
 exports.create = async (req, res) => {
     try {
@@ -42,7 +43,19 @@ exports.create = async (req, res) => {
         // Determinar la fecha de caducidad del puntaje (por ejemplo, 1 año después de la asignación)
         const fechaAsignacion = new Date();
         const fechaCaducidad = new Date();
-        fechaCaducidad.setFullYear(fechaCaducidad.getFullYear() + 1);
+        // Obtener regla de vencimiento de puntos
+        const reglaVencimiento = await ReglaVencimiento.findOne({
+            where: {
+                fecha_inicio: { [Op.lte]: fechaAsignacion },
+                fecha_fin: { [Op.gte]: fechaAsignacion }
+            }
+        });
+
+        if (!reglaVencimiento) {
+            return res.status(500).send({ message: "No se encontró una regla de vencimiento de puntos o descuento para este monto." });
+        } else {
+            fechaCaducidad.setDate(fechaCaducidad.getDate() + reglaVencimiento.duracion_dias);
+        }
 
         // Crear registro en bolsa de puntos
         const bolsaPuntos = {

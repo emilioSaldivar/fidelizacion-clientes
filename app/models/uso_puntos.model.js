@@ -42,26 +42,28 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, {
         tableName: "uso_puntos",
-        timestamps: false,
+        schema: "public",
+        timestamps: true,
+        createdAt: "createdat",
+        updatedAt: "updatedat",
     });
 
     // Relación con la tabla Clientes
     UsoPuntos.associate = (models) => {
+        UsoPuntos.belongsTo(models.Conceptos, {
+            foreignKey: "concepto_id",
+            as: "concepto",
+        });
+        
         UsoPuntos.belongsTo(models.Clientes, {
             foreignKey: "cliente_id",
             as: "cliente",
         });
 
-        // Relación con la tabla Conceptos
-        UsoPuntos.belongsTo(models.Conceptos, {
-            foreignKey: "concepto_id",
-            as: "concepto",
-        });
-
         // Relación con la tabla DetalleUsoPuntos
         UsoPuntos.hasMany(models.DetalleUsoPuntos, {
             foreignKey: "uso_puntos_id",
-            as: "detallesUso",
+            as: "detalle_uso_puntos",
         });
     };
 

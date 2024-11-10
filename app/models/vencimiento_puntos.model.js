@@ -28,7 +28,11 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: Sequelize.NOW
         }
     }, {
+        tableName: 'vencimientos_puntos',
+        schema: 'public',
         timestamps: true,
+        createdAt: 'createdat',
+        updatedAt: 'updatedat'
     });
 
     return VencimientoPuntos;

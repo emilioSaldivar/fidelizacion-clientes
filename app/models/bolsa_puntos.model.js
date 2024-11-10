@@ -48,8 +48,23 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: Sequelize.NOW,
         }
     }, {
+        tableName: "bolsa_puntos",
+        schema: "public",
         timestamps: true,
+        createdAt: "createdat",
+        updatedAt: "updatedat",
     });
+    // Definición de relaciones
+    BolsaPuntos.associate = (models) => {
+        BolsaPuntos.belongsTo(models.Cliente, {
+            foreignKey: "cliente_id",
+            as: "cliente",
+        });
 
+        BolsaPuntos.belongsTo(models.Venta, {
+            foreignKey: "venta_id",
+            as: "venta",
+        });
+    };
     return BolsaPuntos;
 };

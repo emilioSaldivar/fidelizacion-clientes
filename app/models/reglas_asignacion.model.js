@@ -1,31 +1,40 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, DataTypes) => {
     const ReglaAsignacion = sequelize.define("reglas_asignacion", {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false,
+        },
         limite_inferior: {
-            type: Sequelize.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         limite_superior: {
-            type: Sequelize.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         equivalencia_puntos: {
-            type: Sequelize.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
-        createdAt: {
-            type: Sequelize.DATE,
-            field: 'createdat',
-            defaultValue: Sequelize.NOW
+        createdat: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
-        updatedAt: {
-            type: Sequelize.DATE,
-            field: 'updatedat',
-            defaultValue: Sequelize.NOW
-        }
+        updatedat: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
     }, {
-        tableName: 'reglas_asignacion',  // Esto especifica que Sequelize debe usar la tabla 'reglas_asignacion'
-        createdAt: 'createdat',  // Configuramos el nombre de la columna en minúsculas
-        updatedAt: 'updatedat'   // Lo mismo para updatedAt
+        tableName: 'reglas_asignacion',
+        schema: 'public',
+        timestamps: true,       // Activa timestamps para que Sequelize maneje createdAt y updatedAt
+        createdAt: 'createdat', // Mapeamos createdAt al campo createdat
+        updatedAt: 'updatedat', // Mapeamos updatedAt al campo updatedat
     });
+
     return ReglaAsignacion;
 };

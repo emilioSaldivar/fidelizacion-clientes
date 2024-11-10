@@ -46,13 +46,13 @@ module.exports = (sequelize, DataTypes) => {
     DetalleUsoPuntos.associate = (models) => {
         DetalleUsoPuntos.belongsTo(models.UsoPuntos, {
             foreignKey: "uso_puntos_id",
-            as: "usoPuntos",
+            as: "uso_puntos",
         });
 
         // Relación con la tabla BolsaPuntos
         DetalleUsoPuntos.belongsTo(models.BolsaPuntos, {
             foreignKey: "bolsa_id",
-            as: "bolsaPuntos",
+            as: "bolsa_puntos",
         });
     };
 

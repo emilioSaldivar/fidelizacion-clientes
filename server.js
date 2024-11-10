@@ -38,6 +38,8 @@ app.use("/api", vencimientoPuntosRoutes);
 const usoPuntosRoutes = require("./app/routes/uso_puntos.routes");
 app.use("/api", usoPuntosRoutes);
 
+const reportesRoutes = require("./app/routes/reportes.routes.js");
+app.use("/api", reportesRoutes);
 
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;

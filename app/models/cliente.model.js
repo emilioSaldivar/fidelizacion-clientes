@@ -1,4 +1,3 @@
-// modelo cliente.js
 module.exports = (sequelize, DataTypes) => {
     const Cliente = sequelize.define("cliente", {
         id: {
@@ -18,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         numero_documento: {
             type: DataTypes.STRING(50),
             allowNull: true,
-            unique: true,
+            unique: true, // Configuración única para el campo numero_documento
         },
         tipo_documento: {
             type: DataTypes.STRING(20),
@@ -43,21 +42,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATEONLY,
             allowNull: true,
         },
-        createdat: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
-        updatedat: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
     }, {
         tableName: "clientes",
-        timestamps: false,
         schema: "public",
+        timestamps: true, // Habilita timestamps para manejar automáticamente createdAt y updatedAt
+        createdAt: 'createdat', // Mapea el nombre del campo createdAt a createdat
+        updatedAt: 'updatedat', // Mapea el nombre del campo updatedAt a updatedat
     });
-
+        
+        Cliente.associate = (models) => {
+            Cliente.belongsTo(models.UsoPuntos, {
+                foreignKey: "cliente_id",
+                as: "uso_puntos",
+            });
+        }
     return Cliente;
 };
