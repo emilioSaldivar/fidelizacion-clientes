@@ -22,5 +22,6 @@ db.vencimiento_puntos = require("./vencimiento_puntos.model.js")(sequelize, Sequ
 db.bolsa_puntos = require("./bolsa_puntos.model.js")(sequelize, Sequelize);
 db.uso_puntos = require("./uso_puntos.model")(sequelize, Sequelize.DataTypes);
 db.detalle_uso_puntos = require("./detalle_uso_puntos.model")(sequelize, Sequelize.DataTypes);
+db.Cliente = require("./cliente.model.js")(sequelize, Sequelize);
 
 module.exports = db;

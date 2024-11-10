@@ -25,6 +25,10 @@ app.get("/", (req, res) => {
 // Importar y registrar rutas de ventas
 require("./app/routes/venta.routes")(app);
 
+// Importa la ruta de clientes
+const clienteRoutes = require("./app/routes/cliente.routes");
+// Registra la ruta de clientes con el prefijo "/api"
+app.use("/api", clienteRoutes);
 
 // Cuando la ruta no está definida enviar 404
 // Importar y registrar rutas
