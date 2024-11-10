@@ -1,5 +1,8 @@
+const express = require("express");
+const router = express.Router();
 const usoPuntosController = require("../controllers/uso_puntos.controller");
 
-module.exports = (app) => {
-    app.post("/api/uso-puntos", usoPuntosController.usarPuntos);
-};
+router.post("/uso-puntos", usoPuntosController.usarPuntos);
+
+
+module.exports = router;

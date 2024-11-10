@@ -3,7 +3,22 @@ const BolsaPuntos = db.bolsa_puntos;
 const UsoPuntos = db.uso_puntos;
 const DetalleUsoPuntos = db.detalle_uso_puntos;
 const Conceptos = db.Concepto;
+const Cliente = db.cliente; 
 const { Op } = db.Sequelize;
+const nodemailer = require("nodemailer");
+require('dotenv').config();
+
+
+// Configurar Nodemailer para el envío de correo electrónico
+const transporter = nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
+    service: process.env.MAIL_SERVICE,
+    auth: {
+            user: process.env.MAIL_USER,  
+            pass: process.env.MAIL_PASS         
+        }
+    });
 
 exports.usarPuntos = async (req, res) => {
     try {
@@ -67,9 +82,46 @@ exports.usarPuntos = async (req, res) => {
             detallesUso.push(detalleUso);
         }
 
+        // Obtener los datos del cliente para el envío de correo electrónico
+        const cliente = await Cliente.findByPk(cliente_id);
+        if (!cliente) {
+            return res.status(404).send({ message: "Cliente no encontrado." });
+        }
+
+        // Definir el contenido del correo
+        const mailOptions = {
+            from: process.env.MAIL_USER,
+            to: cliente.email,
+            subject: "Comprobante de Uso de Puntos",
+            text: `
+                Estimado ${cliente.nombre} ${cliente.apellido},
+
+                Le informamos que ha utilizado ${puntosNecesarios} puntos en el concepto caje por: "${concepto.descripcion}" el día ${new Date().toLocaleDateString()}.
+
+                Detalle del uso de puntos:
+                ${detallesUso.map((detalle, index) => 
+                    `- Bolsa #${index + 1}: ${detalle.puntaje_utilizado} puntos`
+                ).join('\n')}
+
+                Gracias por ser parte de nuestro programa de fidelización.
+
+                Saludos,
+                Equipo de Atención al Cliente
+            `,
+        };
+
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error("Error al enviar el correo:", error);
+            } else {
+                console.log("Correo enviado: " + info.response);
+            }
+        });
+
         // Responder con el resultado
         res.status(201).send({
-            message: "Puntos utilizados exitosamente",
+            message: "Puntos utilizados exitosamente y correo enviado.",
             usoPuntos,
             detallesUso,
         });

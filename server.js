@@ -22,21 +22,22 @@ app.get("/", (req, res) => {
     res.json({ message: "Bienvenido Node backend 2020" });
 });
 
-// Importar y registrar rutas de ventas
+// Importar y registrar rutas
+
 require("./app/routes/venta.routes")(app);
 
-
-// Cuando la ruta no está definida enviar 404
-// Importar y registrar rutas
 const conceptoRoutes = require("./app/routes/concepto.routes");
-app.use("/api", conceptoRoutes);  // Registrar las rutas bajo el prefijo /api
+app.use("/api", conceptoRoutes);  
+
 const reglasAsignacionRoutes = require("./app/routes/reglas_asignacion.routes");
-app.use("/api", reglasAsignacionRoutes); // Agregar rutas de reglas de asignación
-// Importar y registrar rutas de vencimientos de puntos
+app.use("/api", reglasAsignacionRoutes);
+
 const vencimientoPuntosRoutes = require("./app/routes/vencimiento_puntos.routes");
 app.use("/api", vencimientoPuntosRoutes);
+
 const usoPuntosRoutes = require("./app/routes/uso_puntos.routes");
-usoPuntosRoutes(app);
+app.use("/api", usoPuntosRoutes);
+
 
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
