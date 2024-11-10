@@ -3,6 +3,7 @@ const db = require("../models");
 const Concepto = db.Concepto;
 
 // Crear un nuevo concepto
+//nuevo comentario
 exports.createConcepto = async (req, res) => {
     try {
         const { descripcion, puntos_requeridos } = req.body;

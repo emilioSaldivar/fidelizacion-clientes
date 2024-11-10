@@ -29,6 +29,9 @@ require("./app/routes/venta.routes")(app);
 const conceptoRoutes = require("./app/routes/concepto.routes");
 app.use("/api", conceptoRoutes);  // Registrar las rutas bajo el prefijo /api
 
+const vencimientoRoutes = require("./app/routes/vencimiento.routes");
+app.use("/api/vencimientos", vencimientoRoutes);  // Registrar las rutas bajo el prefijo /api/vencimientos
+
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
