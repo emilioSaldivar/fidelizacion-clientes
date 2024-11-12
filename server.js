@@ -41,6 +41,9 @@ app.use("/api", usoPuntosRoutes);
 const reportesRoutes = require("./app/routes/reportes.routes.js");
 app.use("/api", reportesRoutes);
 
+const bolsasRoutes = require("./app/routes/bolsas.routes.js");
+app.use("/api", bolsasRoutes);
+
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
