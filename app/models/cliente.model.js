@@ -56,5 +56,10 @@ module.exports = (sequelize, DataTypes) => {
                 as: "uso_puntos",
             });
         }
+        Cliente.associate = (models) => {
+            Cliente.hasMany(models.Referido, { as: "referidos", foreignKey: "referidor_id" });
+            Cliente.hasMany(models.Referido, { as: "referido_por", foreignKey: "referido_id" });
+        };
+        
     return Cliente;
 };
