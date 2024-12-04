@@ -50,6 +50,9 @@ app.use("/api", clienteRoutes);
 const integracionRoutes = require("./app/routes/integracion.routes");
 app.use("/api/integracion", integracionRoutes);
 
+const vencimientoRoutes = require("./app/routes/vencimiento.routes");
+app.use("/api/vencimientos", vencimientoRoutes);  // Registrar las rutas bajo el prefijo /api/vencimientos
+
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
