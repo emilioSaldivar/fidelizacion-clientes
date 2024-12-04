@@ -41,6 +41,15 @@ app.use("/api", usoPuntosRoutes);
 const reportesRoutes = require("./app/routes/reportes.routes.js");
 app.use("/api", reportesRoutes);
 
+// Importa la ruta de clientes
+const clienteRoutes = require("./app/routes/cliente.routes");
+// Registra la ruta de clientes con el prefijo "/api"
+app.use("/api", clienteRoutes);
+
+// **Registrar las rutas de integración**
+const integracionRoutes = require("./app/routes/integracion.routes");
+app.use("/api/integracion", integracionRoutes);
+
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
