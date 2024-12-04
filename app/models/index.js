@@ -25,4 +25,6 @@ db.uso_puntos = require("./uso_puntos.model.js")(sequelize, Sequelize.DataTypes)
 db.detalle_uso_puntos = require("./detalle_uso_puntos.model.js")(sequelize, Sequelize.DataTypes);
 db.cliente = require("./cliente.model.js")(sequelize, Sequelize.DataTypes);
 db.referidos = require("./referido.model.js")(sequelize, Sequelize);
+db.pregunta = require("./pregunta.model.js")(sequelize, Sequelize);
+db.respuesta = require("./respuesta.model.js")(sequelize, Sequelize);
 module.exports = db;

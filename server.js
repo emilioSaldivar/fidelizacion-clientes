@@ -47,6 +47,9 @@ app.use("/api", bolsasRoutes);
 const clienteRoutes = require("./app/routes/cliente.routes.js");
 app.use("/api", clienteRoutes);
 
+const encuestaRoutes = require("./app/routes/encuesta.routes.js");
+app.use("/api", encuestaRoutes);
+
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
