@@ -1,0 +1,1107 @@
+{
+	"info": {
+		"_postman_id": "6aba4d6b-8220-41a0-9184-5cb2b13e3f99",
+		"name": "API_FIDELIDACION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27795665"
+	},
+	"item": [
+		{
+			"name": "VENTAS",
+			"item": [
+				{
+					"name": "Generar_Venta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cliente_id\": \"64\",\n    \"total\": \"2500000\",\n    \"factura\": \"252-321-123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/venta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"venta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_Ventas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/venta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"venta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_Venta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/venta/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"venta",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Conceptos",
+			"item": [
+				{
+					"name": "Crear_Concepto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTczMzM2NTM4NywiZXhwIjoxNzMzMzY4OTg3fQ.KdefQ8iJ9maZlhZO534I3Zf2GTAunql_S80pvdIVj9c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"Pan dulce para el profe\",\n    \"puntos_requeridos\": 25,\n    \"nivel\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/conceptos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"conceptos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK_CON_TOKEN",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"descripcion\": \"Pan dulce para el profe\",\n    \"puntos_requeridos\": 25,\n    \"nivel\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9090/api/conceptos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"conceptos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:9091"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f-HcWpmXa6RGGKldU7MOv9gFK+UAo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 05 Dec 2024 02:27:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 6,\n    \"descripcion\": \"Pan dulce para el profe\",\n    \"puntos_requeridos\": 25,\n    \"nivel\": 0,\n    \"updatedat\": \"2024-12-05T05:27:43.862Z\",\n    \"createdat\": \"2024-12-05T05:27:43.862Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener_Conceptos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/conceptos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"conceptos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar_Concepto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"Vino\",\n    \"puntos_requeridos\": 30\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/conceptos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"conceptos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar_Concepto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/conceptos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"conceptos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Regla_Asignacion",
+			"item": [
+				{
+					"name": "Crear_Regla_Asignación",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"limite_inferior\": 500000,\n  \"limite_superior\": 2147483647,\n  \"equivalencia_puntos\": 30000\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/reglas_asignacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"reglas_asignacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_Reglas_Asignación",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/reglas_asignacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"reglas_asignacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar_Regla_Asignación",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"limite_inferior\": 500000,\n  \"limite_superior\": 2147483647,\n  \"equivalencia_puntos\": 20000\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/reglas_asignacion/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"reglas_asignacion",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar_Regla_Asignación",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/reglas_asignacion/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"reglas_asignacion",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vecimiento_Puntos",
+			"item": [
+				{
+					"name": "Crear_Vencimiento_Puntos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fecha_inicio\": \"2024-11-01\",\n    \"fecha_fin\": \"2024-12-31\",\n    \"duracion_dias\": 30\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/vencimientos_puntos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"vencimientos_puntos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_Vencimientos_Puntos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/vencimientos_puntos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"vencimientos_puntos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_Vencimiento_Puntos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/vencimientos_puntos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"vencimientos_puntos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar_Vencimiento_Puntos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fecha_inicio\": \"2024-11-01\",\n    \"fecha_fin\": \"2025-01-05\",\n    \"duracion_dias\": 32\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/vencimientos_puntos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"vencimientos_puntos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar_Vencimiento_Puntos Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/vencimientos_puntos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"vencimientos_puntos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reportes",
+			"item": [
+				{
+					"name": "Consultar_Uso_Puntos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/uso-puntos?conceptoId=3&fechaUso=2024-11-10&clienteId=69",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"uso-puntos"
+							],
+							"query": [
+								{
+									"key": "conceptoId",
+									"value": "3"
+								},
+								{
+									"key": "fechaUso",
+									"value": "2024-11-10"
+								},
+								{
+									"key": "clienteId",
+									"value": "69"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar_Bolsa_Puntos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/bolsa-puntos?clienteId=69&minPuntos=1&maxPuntos=500",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"bolsa-puntos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "69"
+								},
+								{
+									"key": "minPuntos",
+									"value": "1"
+								},
+								{
+									"key": "maxPuntos",
+									"value": "500"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar_Puntos_A_Vencer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/puntos-a-vencer?dias=364",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"puntos-a-vencer"
+							],
+							"query": [
+								{
+									"key": "dias",
+									"value": "364"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta_Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/buscar-clientes?nombre=Emilio&apellido=Saldivar&fechaNacimiento=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"buscar-clientes"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Emilio"
+								},
+								{
+									"key": "apellido",
+									"value": "Saldivar"
+								},
+								{
+									"key": "fechaNacimiento",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Calcular_Puntos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/calcular-puntos?monto=210000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"calcular-puntos"
+							],
+							"query": [
+								{
+									"key": "monto",
+									"value": "210000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CLIENTES",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Carlos Ruiz\",\n    \"apellido\": \"Molina\",\n    \"numero_documento\": \"12345678\",\n    \"tipo_documento\": \"DNI\",\n    \"nacionalidad\": \"Paraguayo\",\n    \"email\": \"carlos.ruiz@mail.com\",\n    \"telefono\": \"0987654321\",\n    \"fecha_nacimiento\": \"1992-04-20\",\n    \"referidor_id\": 2  // ID del cliente referidor\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerClientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerClienteId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/clientes/69",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"clientes",
+								"69"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ENCUESTA",
+			"item": [
+				{
+					"name": "CrearPregunta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pregunta_texto\": \"¿Estás satisfecho con nuestro servicio?\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/pregunta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"pregunta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerPreguntaId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/pregunta/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"pregunta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearRespuesta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cliente_id\": 69,\n    \"respuesta_texto\": \"Sí, estoy muy satisfecho.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/pregunta/1/respuesta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"pregunta",
+								"1",
+								"respuesta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerRespuesta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/respuestas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"respuestas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DASHBOARD",
+			"item": [
+				{
+					"name": "obtenerDatos",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SEGMENTAR",
+			"item": [
+				{
+					"name": "Segmentacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/segmentar?edadMin=18&edadMax=26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"segmentar"
+							],
+							"query": [
+								{
+									"key": "edadMin",
+									"value": "18"
+								},
+								{
+									"key": "edadMax",
+									"value": "26"
+								},
+								{
+									"key": "ubicacion",
+									"value": "Asunción",
+									"disabled": true
+								},
+								{
+									"key": "comprasMin",
+									"value": "1000",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usar_Puntos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cliente_id\": \"69\",\n    \"concepto_id\": \"3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/uso-puntos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"uso-puntos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Uso_Puntos_Ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cliente_id\": \"71\",\n    \"concepto_id\": \"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/uso-puntos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"uso-puntos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:9091"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "658"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"292-tkKRugCwrg3lNb2NiG/nwU+QQrE\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Nov 2024 17:42:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Puntos utilizados exitosamente\",\n    \"usoPuntos\": {\n        \"createdat\": \"2024-11-09T20:42:30.549Z\",\n        \"updatedat\": \"2024-11-09T20:42:30.549Z\",\n        \"id\": 1,\n        \"cliente_id\": 71,\n        \"puntaje_utilizado\": 40,\n        \"fecha\": \"2024-11-09\",\n        \"concepto_id\": 3\n    },\n    \"detallesUso\": [\n        {\n            \"createdat\": \"2024-11-09T20:42:30.569Z\",\n            \"updatedat\": \"2024-11-09T20:42:30.569Z\",\n            \"id\": 1,\n            \"uso_puntos_id\": 1,\n            \"puntaje_utilizado\": 15,\n            \"bolsa_id\": 1\n        },\n        {\n            \"createdat\": \"2024-11-09T20:42:30.577Z\",\n            \"updatedat\": \"2024-11-09T20:42:30.577Z\",\n            \"id\": 2,\n            \"uso_puntos_id\": 1,\n            \"puntaje_utilizado\": 15,\n            \"bolsa_id\": 2\n        },\n        {\n            \"createdat\": \"2024-11-09T20:42:30.584Z\",\n            \"updatedat\": \"2024-11-09T20:42:30.584Z\",\n            \"id\": 3,\n            \"uso_puntos_id\": 1,\n            \"puntaje_utilizado\": 10,\n            \"bolsa_id\": 3\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "LOGIN_API",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "LOGINok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:9091"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "175"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"af-PHdgiM64doTITmB2sziqOSfjWrM\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 05 Dec 2024 02:23:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTczMzM2NTM4NywiZXhwIjoxNzMzMzY4OTg3fQ.KdefQ8iJ9maZlhZO534I3Zf2GTAunql_S80pvdIVj9c\"\n}"
+				}
+			]
+		}
+	]
+}
