@@ -7,7 +7,7 @@ exports.createConcepto = async (req, res) => {
     try {
         const { descripcion, puntos_requeridos, nivel } = req.body;
         const concepto = await Concepto.create({ descripcion, puntos_requeridos, nivel });
-        res.status(201).json(concepto);
+        res.status(200).json({message: "Concepto creado exitosamente",concepto});
     } catch (error) {
         res.status(500).json({ message: "Error al crear concepto", error });
     }

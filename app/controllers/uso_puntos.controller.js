@@ -133,7 +133,7 @@ exports.usarPuntos = async (req, res) => {
         });
 
         // Responder con el resultado
-        res.status(201).send({
+        res.status(200).send({
             message: "Puntos utilizados exitosamente y correo enviado.",
             usoPuntos,
             detallesUso,

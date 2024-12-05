@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     try {
         const { limite_inferior, limite_superior, equivalencia_puntos } = req.body;
         const regla = await ReglaAsignacion.create({ limite_inferior, limite_superior, equivalencia_puntos });
-        res.status(201).json(regla);
+        res.status(200).json({ message: "Se creó regla de asignación",regla});
     } catch (error) {
         res.status(500).json({ message: "Error al crear regla de asignación", error });
     }

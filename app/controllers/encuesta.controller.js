@@ -16,7 +16,7 @@ exports.createRespuesta = async (req, res) => {
             respuesta_texto
         });
 
-        res.status(201).json({ message: "Respuesta registrada con éxito", respuesta: nuevaRespuesta });
+        res.status(200).json({ message: "Respuesta registrada con éxito", respuesta: nuevaRespuesta });
     } catch (error) {
         res.status(500).json({ message: error.message || "Error al registrar la respuesta." });
     }
@@ -34,7 +34,7 @@ exports.createPregunta = async (req, res) => {
             pregunta_texto
         });
 
-        res.status(201).json({ message: "Pregunta creada con éxito", pregunta: nuevaPregunta });
+        res.status(200).json({ message: "Pregunta creada con éxito", pregunta: nuevaPregunta });
     } catch (error) {
         res.status(500).json({ message: error.message || "Error al crear la pregunta." });
     }
@@ -117,7 +117,7 @@ exports.addRespuesta = async (req, res) => {
             respuesta_texto
         });
 
-        res.status(201).json({ message: "Respuesta agregada con éxito.", respuesta: nuevaRespuesta });
+        res.status(200).json({ message: "Respuesta agregada con éxito.", respuesta: nuevaRespuesta });
     } catch (error) {
         res.status(500).json({ message: error.message || "Error al agregar la respuesta." });
     }

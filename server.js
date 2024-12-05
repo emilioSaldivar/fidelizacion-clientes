@@ -25,6 +25,9 @@ app.get("/", (req, res) => {
 // Importar y registrar rutas
 
 require("./app/routes/venta.routes")(app);
+// Ruta de autenticación (login)
+const authRoutes = require("./app/routes/auth.routes.js");
+app.use("/api", authRoutes);
 
 const conceptoRoutes = require("./app/routes/concepto.routes");
 app.use("/api", conceptoRoutes);  

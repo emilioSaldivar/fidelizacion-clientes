@@ -10,7 +10,7 @@ exports.create = async (req, res) => {
             fecha_fin,
             duracion_dias,
         });
-        res.status(201).json(nuevoVencimiento);
+        res.status(200).json({ message: "Se creó vencimiento",nuevoVencimiento});
     } catch (error) {
         res.status(500).json({ message: "Error al crear vencimiento", error });
     }
