@@ -3,6 +3,7 @@ const Ventas = db.Ventas;
 const BolsaPuntos = db.bolsa_puntos;
 const ReglaAsignacion = db.reglas_asignacion;
 const ReglaVencimiento = db.vencimiento_puntos;
+const Referido = db.referidos;
 const Op = db.Sequelize.Op;
 exports.create = async (req, res) => {
     try {
@@ -39,7 +40,7 @@ exports.create = async (req, res) => {
 
         // Calcular puntaje asignado
         const puntajeAsignado = Math.floor(venta.total / reglaAsignacion.equivalencia_puntos);
-
+if (puntajeAsignado > 0) {
         // Determinar la fecha de caducidad del puntaje (por ejemplo, 1 año después de la asignación)
         const fechaAsignacion = new Date();
         const fechaCaducidad = new Date();
@@ -57,23 +58,78 @@ exports.create = async (req, res) => {
             fechaCaducidad.setDate(fechaCaducidad.getDate() + reglaVencimiento.duracion_dias);
         }
 
-        // Crear registro en bolsa de puntos
-        const bolsaPuntos = {
-            cliente_id: venta.cliente_id,
-            venta_id: nuevaVenta.id,
-            fecha_asignacion: fechaAsignacion,
-            fecha_caducidad: fechaCaducidad,
-            puntaje_asignado: puntajeAsignado,
-            puntaje_utilizado: 0,
-            saldo_puntos: puntajeAsignado,
-            monto_operacion: venta.total
-        };
+        // ### Verificar si es la primera compra y si tiene referidor
+        const referido = await Referido.findOne({
+            where: { referido_id: venta.cliente_id }
+        });
 
-        await BolsaPuntos.create(bolsaPuntos);
+        if (referido) {
+            // Verificar si la primera compra ha sido realizada
+            if (referido.primera_compra_realizada) {
+                // Duplica los puntos para el cliente
+                const puntosDuplicados = puntajeAsignado * 2;
+                const bolsaPuntosCliente = {
+                    cliente_id: venta.cliente_id,
+                    venta_id: nuevaVenta.id,
+                    fecha_asignacion: fechaAsignacion,
+                    fecha_caducidad: fechaCaducidad,
+                    puntaje_asignado: puntosDuplicados,
+                    puntaje_utilizado: 0,
+                    saldo_puntos: puntosDuplicados,
+                    monto_operacion: venta.total
+                };
+                await BolsaPuntos.create(bolsaPuntosCliente);
 
-        // Responder con los datos de la venta y la bolsa de puntos creada
-        res.status(201).send({ venta: nuevaVenta, bolsaPuntos });
+                // Asigna puntos al referidor
+                const bolsaPuntosReferidor = {
+                    cliente_id: referido.referidor_id,
+                    venta_id: nuevaVenta.id,
+                    fecha_asignacion: fechaAsignacion,
+                    fecha_caducidad: fechaCaducidad,
+                    puntaje_asignado: puntajeAsignado,
+                    puntaje_utilizado: 0,
+                    saldo_puntos: puntajeAsignado,
+                    monto_operacion: venta.total
+                };
+                await BolsaPuntos.create(bolsaPuntosReferidor);
+                
+                // Marcar que la primera compra ya fue realizada
+                await Referido.update(
+                    { primera_compra_realizada: false },  // Solo actualizar este campo
+                    { where: { id: referido.id } }       // Condición para encontrar el registro
+                );
 
+            }
+        } else {
+            // Si no existe el referido, crear el registro estándar para clientes sin referidor
+            const bolsaPuntos = {
+                cliente_id: venta.cliente_id,
+                venta_id: nuevaVenta.id,
+                fecha_asignacion: fechaAsignacion,
+                fecha_caducidad: fechaCaducidad,
+                puntaje_asignado: puntajeAsignado,
+                puntaje_utilizado: 0,
+                saldo_puntos: puntajeAsignado,
+                monto_operacion: venta.total
+            };
+            await BolsaPuntos.create(bolsaPuntos);
+        }
+        // Responder con los datos de la venta y estado 200
+        res.status(200).send({
+            message: "Venta creada exitosamente.",
+            venta: venta,
+            puntaje_referidor: puntajeAsignado,
+            puntaje_referido: puntajeAsignado*2
+        });
+    } else{
+        // Responder con los datos de la venta y estado 200
+        res.status(200).send({
+            message: "Venta creada exitosamente.",
+            venta: venta,
+            puntajeAsignado: puntajeAsignado
+        });
+    }
+        
     } catch (error) {
         res.status(500).send({
             message: error.message || "Ha ocurrido un error al crear la venta y la bolsa de puntos."

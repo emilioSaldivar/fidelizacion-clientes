@@ -44,11 +44,33 @@ app.use("/api", reportesRoutes);
 const bolsasRoutes = require("./app/routes/bolsas.routes.js");
 app.use("/api", bolsasRoutes);
 
+const clienteRoutes = require("./app/routes/cliente.routes.js");
+app.use("/api", clienteRoutes);
+
+const encuestaRoutes = require("./app/routes/encuesta.routes.js");
+app.use("/api", encuestaRoutes);
+
+const dashboardRoutes = require("./app/routes/dashboard.routes.js");
+app.use("/api", dashboardRoutes);
+
 const segmentacionRoutes = require("./app/routes/segmentacion.routes.js");
 app.use("/api", segmentacionRoutes);
+
+
+require('dotenv').config();
+
+console.log({
+    DB_HOST: process.env.DB_HOST,
+    DB_PORT: process.env.DB_PORT,
+    DB_NAME: process.env.DB_NAME,
+    DB_USER: process.env.DB_USER,
+    DB_PASSWORD: process.env.DB_PASSWORD ? `***** (${typeof process.env.DB_PASSWORD})` : 'NO DEFINIDO',
+});
+
 
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto: ${PORT}`);
 });
+

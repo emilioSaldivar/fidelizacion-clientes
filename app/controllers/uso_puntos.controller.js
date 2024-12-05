@@ -35,7 +35,18 @@ exports.usarPuntos = async (req, res) => {
             return res.status(404).send({ message: "Concepto no encontrado." });
         }
         const puntosNecesarios = concepto.puntos_requeridos;
+        const nivelRequerido = concepto.nivel ?? 0;
 
+        // Obtener los datos del cliente para el envío de correo electrónico
+        const cliente = await Cliente.findByPk(cliente_id);
+        if (!cliente) {
+            return res.status(404).send({ message: "Cliente no encontrado." });
+        }
+        
+        // Verificar el nivel del cliente
+        if (nivelRequerido > cliente.nivel_canje) {
+            return res.status(400).send({ message: "El cliente no cumple con el nivel requerido." });
+        }
         // Obtener las bolsas de puntos del cliente en orden FIFO (por fecha de asignación)
         const bolsas = await BolsaPuntos.findAll({
             where: { cliente_id, saldo_puntos: { [Op.gt]: 0 } },
@@ -59,6 +70,11 @@ exports.usarPuntos = async (req, res) => {
         // Registrar el detalle y actualizar las bolsas de puntos
         let puntosRestantes = puntosNecesarios;
         const detallesUso = [];
+        // Modificar el nivel de fidelidad del cliente
+        let nivelNuevo = cliente.nivel_canje + 1;
+        if (nivelNuevo > 3) nivelNuevo = 0;
+        cliente.nivel_canje = nivelNuevo;
+        await cliente.save();
 
         for (const bolsa of bolsas) {
             if (puntosRestantes <= 0) break;
@@ -82,11 +98,7 @@ exports.usarPuntos = async (req, res) => {
             detallesUso.push(detalleUso);
         }
 
-        // Obtener los datos del cliente para el envío de correo electrónico
-        const cliente = await Cliente.findByPk(cliente_id);
-        if (!cliente) {
-            return res.status(404).send({ message: "Cliente no encontrado." });
-        }
+        
 
         // Definir el contenido del correo
         const mailOptions = {
@@ -102,6 +114,7 @@ exports.usarPuntos = async (req, res) => {
                 ${detallesUso.map((detalle, index) => 
                     `- Bolsa #${index + 1}: ${detalle.puntaje_utilizado} puntos`
                 ).join('\n')}
+                Usted se encuentra en el NIVEL FIDELIDAD: ${cliente.nivel_canje}, y puede canjear conceptos de ese nivel o menores. Mientras más canjes realices más aumentas de nivel de fidelidad.
 
                 Gracias por ser parte de nuestro programa de fidelización.
 

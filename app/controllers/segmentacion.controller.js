@@ -1,3 +1,4 @@
+// Importa la configuración del pool de pg
 const { Pool } = require('pg');
 require('dotenv').config();
 
@@ -9,6 +10,7 @@ const pool = new Pool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD
 });
+
 
 exports.segmentarClientes = async (req, res) => {
     const { edad_min, edad_max, nacionalidad } = req.query;
@@ -48,7 +50,7 @@ exports.segmentarClientes = async (req, res) => {
 };
 
 
-/*
+
 // Segmentación de clientes por historial de compras
 exports.segmentarClientesPorCompras = async (req, res) => {
     try {
@@ -105,4 +107,3 @@ exports.segmentarClientesInactivos = async (req, res) => {
         res.status(500).json({ error: 'Error al segmentar clientes inactivos' });
     }
 };
-*/

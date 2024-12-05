@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         puntos_requeridos: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        nivel: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         }
     }, {
         tableName: 'conceptos',
