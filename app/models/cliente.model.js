@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATEONLY,
             allowNull: true,
         },
+        nivel_canje: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
     }, {
         tableName: "clientes",
         schema: "public",

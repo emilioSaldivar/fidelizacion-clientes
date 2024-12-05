@@ -5,8 +5,8 @@ const Concepto = db.Concepto;
 // Crear un nuevo concepto
 exports.createConcepto = async (req, res) => {
     try {
-        const { descripcion, puntos_requeridos } = req.body;
-        const concepto = await Concepto.create({ descripcion, puntos_requeridos });
+        const { descripcion, puntos_requeridos, nivel } = req.body;
+        const concepto = await Concepto.create({ descripcion, puntos_requeridos, nivel });
         res.status(201).json(concepto);
     } catch (error) {
         res.status(500).json({ message: "Error al crear concepto", error });
@@ -27,8 +27,8 @@ exports.getConceptos = async (req, res) => {
 exports.updateConcepto = async (req, res) => {
     try {
         const { id } = req.params;
-        const { descripcion, puntos_requeridos } = req.body;
-        const concepto = await Concepto.update({ descripcion, puntos_requeridos }, {
+        const { descripcion, puntos_requeridos, nivel } = req.body;
+        const concepto = await Concepto.update({ descripcion, puntos_requeridos, nivel }, {
             where: { id }
         });
         res.status(200).json({ message: "Concepto actualizado correctamente" });

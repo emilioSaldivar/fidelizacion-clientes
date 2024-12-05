@@ -13,7 +13,8 @@ exports.createCliente = async (req, res) => {
             email,
             telefono,
             fecha_nacimiento,
-            referidor_id
+            referidor_id,
+            nivel_canje,
         } = req.body;
 
         // Validar que los datos obligatorios estén presentes
@@ -38,7 +39,8 @@ exports.createCliente = async (req, res) => {
             nacionalidad,
             email,
             telefono,
-            fecha_nacimiento
+            fecha_nacimiento,
+            nivel_canje
         });
 
         // Si se proporciona un referidor_id, crear la relación en Referidos
@@ -97,7 +99,8 @@ exports.updateCliente = async (req, res) => {
             nacionalidad,
             email,
             telefono,
-            fecha_nacimiento
+            fecha_nacimiento,
+            nivel_canje
         } = req.body;
 
         await Cliente.update({
@@ -108,7 +111,8 @@ exports.updateCliente = async (req, res) => {
             nacionalidad,
             email,
             telefono,
-            fecha_nacimiento
+            fecha_nacimiento,
+            nivel_canje
         }, {
             where: { id }
         });
