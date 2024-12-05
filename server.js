@@ -50,6 +50,9 @@ app.use("/api", clienteRoutes);
 const encuestaRoutes = require("./app/routes/encuesta.routes.js");
 app.use("/api", encuestaRoutes);
 
+const dashboardRoutes = require("./app/routes/dashboard.routes.js");
+app.use("/api", dashboardRoutes);
+
 // Set port, listen for requests
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, () => {
