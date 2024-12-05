@@ -46,6 +46,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
+        direccion: { 
+            type: DataTypes.STRING(255),
+            allowNull: true,
+        },
     }, {
         tableName: "clientes",
         schema: "public",
@@ -63,6 +67,7 @@ module.exports = (sequelize, DataTypes) => {
         Cliente.associate = (models) => {
             Cliente.hasMany(models.Referido, { as: "referidos", foreignKey: "referidor_id" });
             Cliente.hasMany(models.Referido, { as: "referido_por", foreignKey: "referido_id" });
+            Cliente.hasMany(models.Venta, { as: "ventas", foreignKey: "cliente_id" }); // Relación con ventas
         };
         
     return Cliente;

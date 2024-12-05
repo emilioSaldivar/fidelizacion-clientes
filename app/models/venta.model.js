@@ -21,6 +21,8 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         }
     });
-
+    Ventas.associate = (models) => {
+        Ventas.belongsTo(models.Cliente, { as: "cliente", foreignKey: "cliente_id" });
+    };
     return Ventas;
 };
