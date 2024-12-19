@@ -16,7 +16,11 @@ exports.createRespuesta = async (req, res) => {
             respuesta_texto
         });
 
+<<<<<<< HEAD
         res.status(200).json({ message: "Respuesta registrada con éxito", respuesta: nuevaRespuesta });
+=======
+        res.status(201).json({ message: "Respuesta registrada con éxito", respuesta: nuevaRespuesta });
+>>>>>>> d9cb542766cad15bf602b89e909a19c2b4e4d475
     } catch (error) {
         res.status(500).json({ message: error.message || "Error al registrar la respuesta." });
     }
@@ -34,7 +38,11 @@ exports.createPregunta = async (req, res) => {
             pregunta_texto
         });
 
+<<<<<<< HEAD
         res.status(200).json({ message: "Pregunta creada con éxito", pregunta: nuevaPregunta });
+=======
+        res.status(201).json({ message: "Pregunta creada con éxito", pregunta: nuevaPregunta });
+>>>>>>> d9cb542766cad15bf602b89e909a19c2b4e4d475
     } catch (error) {
         res.status(500).json({ message: error.message || "Error al crear la pregunta." });
     }
@@ -117,7 +125,11 @@ exports.addRespuesta = async (req, res) => {
             respuesta_texto
         });
 
+<<<<<<< HEAD
         res.status(200).json({ message: "Respuesta agregada con éxito.", respuesta: nuevaRespuesta });
+=======
+        res.status(201).json({ message: "Respuesta agregada con éxito.", respuesta: nuevaRespuesta });
+>>>>>>> d9cb542766cad15bf602b89e909a19c2b4e4d475
     } catch (error) {
         res.status(500).json({ message: error.message || "Error al agregar la respuesta." });
     }
